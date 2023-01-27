@@ -44,9 +44,11 @@ public class GasStation {
 	 * @param type 연료 종류 (gasolin, diesel, lpg)
 	 * @param stock 판매량
 	 */
-	public void sell(String type, int stock) {
+	public boolean sell(String type, int stock) {
+		boolean result = checkStock(type, stock);
+		
 		// 1. type 연료가 stock만큼 존재하는지 확인한다.
-		if(checkStock(type, stock)) {
+		if(result) {
 			// 1-1. 연료가 충분하다면 type 연료의 잔량을 stock 만큼 줄인다. 
 			if(gasolin.getType().equals(type)) {
 				int fuelStock = gasolin.getStock();
@@ -66,7 +68,7 @@ public class GasStation {
 			// 1-2. 연료가 부족하다면 "연료가 부족합니다"를 출력하고 메소드를 종료한다.
 			System.out.println("연료가 부족합니다.");
 		}
-		
+		return result;
 	}
 	
 //  sell 메소드의 반복되는 3코드를 묶을 수 있다.
@@ -91,7 +93,7 @@ public class GasStation {
 	 * @param stock 주유량
 	 * @return 연료의 양이 stock 이상이면 true, 아니면 false
 	 */
-	public boolean checkStock(String type, int stock) {
+	private boolean checkStock(String type, int stock) {
 		boolean result = false;
 		if(gasolin.getType().equals(type)) {
 			result = gasolin.getStock() >= stock;
