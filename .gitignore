@@ -4,10 +4,10 @@
 
 build/
 
-/.classpath
+.classpath
 
-/.project
+.project
 
-/.settings
+.settings
 
-/bin/
+bin
