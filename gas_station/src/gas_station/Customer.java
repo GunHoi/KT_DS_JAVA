@@ -105,6 +105,6 @@ public class Customer {
 		System.out.print("  diesel: "+gasStation.getDiesel().getStock());
 		System.out.println("  lpg: "+gasStation.getLpg().getStock());
 		System.out.println("주유소 보유 금액 : "+gasStation.getMoney()+"\n");
-		System.out.println("구매자의 연료 : "+this.getFuel().getType()+"   남은 금액 : "+this.getMoney());
+		System.out.println("구매자의 연료종류: "+this.getFuel().getType()+"  구매자의 연료 잔량 : "+this.getFuel().getStock()+"  남은 금액 : "+this.getMoney());
 	}
 }
