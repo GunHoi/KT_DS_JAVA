@@ -54,6 +54,7 @@ public class Customer {
 					money = (int) (Street.LPG_PRICE * stock);
 				}
 				this.pay(gasStation, money);
+				this.printResult(gasStation);
 			}else { // 돈은 있지만, 연료가 없는 경우
 				// 1-3. 돈이 없다면 "연료를 구매할 수 없습니다" 를 출력하고 메소드를 끝낸다.
 				System.out.println("연료를 구매할 수 없습니다.");
@@ -96,5 +97,14 @@ public class Customer {
 		}
 		
 		return result;
+	}
+	
+	private void printResult(GasStation gasStation) {
+		System.out.println("주유소에 남은 연료 잔량");
+		System.out.print("gasolin: "+gasStation.getGasolin().getStock());
+		System.out.print("  diesel: "+gasStation.getDiesel().getStock());
+		System.out.println("  lpg: "+gasStation.getLpg().getStock());
+		System.out.println("주유소 보유 금액 : "+gasStation.getMoney()+"\n");
+		System.out.println("구매자의 연료 : "+this.getFuel().getType()+"   남은 금액 : "+this.getMoney());
 	}
 }
