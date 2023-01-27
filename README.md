@@ -8,3 +8,5 @@ KT DS 웹 융합 어플리케이션 개발자 양성과정 JAVA 학습
  * 제어문 사용 방법 및 클래스
 ### `23.01.26 
  * 메소드의 구조 및 사용 (접근제한자, 파라미터, this, Getter&Setter) & static
+### `23.01.27
+ * Array 와 List의 차이 및 ArrayList 기능 사용 
