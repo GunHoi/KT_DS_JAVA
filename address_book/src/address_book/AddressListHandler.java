@@ -32,6 +32,38 @@ public class AddressListHandler {
 		System.out.println("주소 : "+addr.getAddress()+"\n");
 	}
 	
+	/**
+	 * 전통적 for를 이용해 반복
+	 */
+	public void readAllFor() {
+		for(int i=0;i<addressList.size();i++) {
+			read(i);
+//			System.out.println("이름 : "+addressList.get(i).getName());
+//			System.out.println("전화번호 : "+addressList.get(i).getPhoneNumber());
+//			System.out.println("주소 : "+addressList.get(i).getAddress()+"\n");
+		}
+	}
+	/**
+	 * for-each를 이용해 반복
+	 */
+	public void readAllForeach() {
+		for(Address addr : addressList) {
+			System.out.println("이름 : "+addr.getName());
+			System.out.println("전화번호 : "+addr.getPhoneNumber());
+			System.out.println("주소 : "+addr.getAddress()+"\n");
+		}
+	}
+	/**
+	 * List의 forEach를 이용해 반복
+	 */
+	public void readAllListForeach() {
+		addressList.forEach((addr)->{
+			System.out.println("이름 : "+addr.getName());
+			System.out.println("전화번호 : "+addr.getPhoneNumber());
+			System.out.println("주소 : "+addr.getAddress()+"\n");
+		});
+	}
+	
 	public static void main(String[] args) {
 		AddressListHandler handler = new AddressListHandler();
 		
@@ -50,5 +82,12 @@ public class AddressListHandler {
 		
 		handler.delete(0);
 		handler.read(0);
+		
+		System.out.println("----------FOR----------");
+		handler.readAllFor();
+		System.out.println("----------For-EACH----------");
+		handler.readAllForeach();
+		System.out.println("----------LIST FOR EACH----------");
+		handler.readAllListForeach();
 	}
 }

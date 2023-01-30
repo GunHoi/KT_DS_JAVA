@@ -71,6 +71,31 @@ public class BoardService {
 		System.out.println("조회수:"+boardVO.getReadCount());
 	}
 	
+	public void readAll() {
+		for(int i=0;i<boardList.size();i++) {
+			int readCount = boardList.get(i).getReadCount();
+			readCount+=1;
+			boardList.get(i).setReadCount(readCount);
+			System.out.println("인덱스: "+i);
+			System.out.println("순번:"+boardList.get(i).getNumber());
+			System.out.println("제목:"+boardList.get(i).getSubject());
+			System.out.println("작성자:"+boardList.get(i).getWriter());
+			System.out.println("조회수:"+boardList.get(i).getReadCount()+"\n");
+		}
+	}
+	
+	public void readAllWithOutIndex() {
+		boardList.forEach((boardVO)->{
+			int readCount = boardVO.getReadCount();
+			readCount+=1;
+			boardVO.setReadCount(readCount);
+			System.out.println("순번:"+boardVO.getNumber());
+			System.out.println("제목:"+boardVO.getSubject());
+			System.out.println("작성자:"+boardVO.getWriter());
+			System.out.println("조회수:"+boardVO.getReadCount()+"\n");
+		});
+	}
+	
 	public static void main(String[] args) {
 		BoardService boardService = new BoardService();
 		boardService.create("첫 번째 게시글", "홍길동");
@@ -96,5 +121,10 @@ public class BoardService {
 		boardService.read(3);
 		boardService.read(4);
 		boardService.read(5);
+		
+		System.out.println("\n----------readAll----------");
+		boardService.readAll();
+		System.out.println("\n----------readAllWithOutIndex----------");
+		boardService.readAllWithOutIndex();
 	}
 }
