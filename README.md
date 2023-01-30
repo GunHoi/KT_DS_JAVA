@@ -10,3 +10,5 @@ KT DS 웹 융합 어플리케이션 개발자 양성과정 JAVA 학습
  * 메소드의 구조 및 사용 (접근제한자, 파라미터, this, Getter&Setter) & static
 ### `23.01.27
  * Array 와 List의 차이 및 ArrayList 기능 사용 
+### `23.01.30
+ * For, for-each, forEach, while 등 반복문의 사용 및 생성자를 이용한 실습
