@@ -2,6 +2,7 @@ package board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * 게시판 기능 서비스
@@ -98,33 +99,54 @@ public class BoardService {
 	
 	public static void main(String[] args) {
 		BoardService boardService = new BoardService();
-		boardService.create("첫 번째 게시글", "홍길동");
-		boardService.create("두 번째 게시글", "홍길동");
-		boardService.create("세 번째 게시글", "홍길동");
-		boardService.create("네 번째 게시글", "홍길동");
-		boardService.create("다섯 번째 게시글", "홍길동");
-		boardService.create("여섯 번째 게시글", "홍길동");
 		
-		boardService.read(0);
-		boardService.read(1);
-		boardService.read(2);
-		boardService.read(3);
+		Scanner scan = new Scanner(System.in);
 		
-		boardService.update(1, "수정한 게시글 원래는 두 번째 게시글");
-		boardService.read(1);
-		
-		boardService.delete(5);
-		
-		boardService.read(0);
-		boardService.read(1);
-		boardService.read(2);
-		boardService.read(3);
-		boardService.read(4);
-		boardService.read(5);
-		
-		System.out.println("\n----------readAll----------");
-		boardService.readAll();
-		System.out.println("\n----------readAllWithOutIndex----------");
-		boardService.readAllWithOutIndex();
+		while(true) {
+			System.out.println("메뉴를 입력하세요.");
+			System.out.println("1. 등록");
+			System.out.println("2. 수정");
+			System.out.println("3. 삭제");
+			System.out.println("4. 조회");
+			System.out.println("5. 종료");
+			int menu = scan.nextInt();
+			scan.nextLine();	//enter를 한번 없애서 제목입력과 작성자입력이 동시에 뜨는 버그 해결
+			if(menu == 1) {
+				//등록
+				System.out.println("제목을 입력하세요.");
+				String subject = scan.nextLine();
+				
+				System.out.println("작성자를 입력하세요.");
+				String writer = scan.nextLine();
+				
+				boardService.create(subject, writer);
+				System.out.println("게시글이 등록되었습니다.");
+			}else if(menu == 2) {
+				//수정
+				System.out.println("수정할 글의 번호를 입력하세요.");
+				int updateNum = scan.nextInt();
+				
+				System.out.println("수정할 내용을 입력하세요(제목).");
+				String subject = scan.nextLine();
+				
+				boardService.update(updateNum, subject);
+				System.out.println("게시글이 수정되었습니다.");
+			}else if(menu == 3) {
+				//삭제
+				System.out.println("삭제할 글의 번호를 입력하세요.");
+				int deleteNum = scan.nextInt();
+				
+				boardService.delete(deleteNum);
+				System.out.println("게시글이 삭제되었습니다.");
+			}else if(menu == 4) {
+				//조회
+				boardService.readAllWithOutIndex();
+				System.out.println("모든 게시글을 조회했습니다.");
+			}else {
+				//종료
+				System.out.println("종료합니다.");
+				break;
+			}
+		}
 	}
 }
