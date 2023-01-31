@@ -33,7 +33,7 @@ public class Customer {
 	 * @param type 연료 종류 (gasolin, diesel, lpg)
 	 * @param stock 구매량
 	 */
-	public void buy(GasStation gasStation, String type, int stock) {
+	public void buy(GasStation gasStation, FuelType type, int stock) {
 		// 1. type 연료를 stock 만큼 구매할 돈이 있는지 확인한다.
 		if(checkMoney(type,stock)) {
 			boolean sellResult = gasStation.sell(type, stock);
@@ -44,15 +44,7 @@ public class Customer {
 				int fuelStock = fuel.getStock();
 				fuelStock += stock;
 				fuel.setStock(fuelStock);
-				
-				int money = 0;
-				if(type.equals("gasolin")) {
-					money = (int) (Street.GASOLIN_PRICE * stock);
-				}else if(type.equals("diesel")) {
-					money = (int) (Street.DIESEL_PRICE * stock);
-				}else if(type.equals("lpg")) {
-					money = (int) (Street.LPG_PRICE * stock);
-				}
+				int money = (int) (Street.PRICES.get(type) * stock);
 				this.pay(gasStation, money);
 				this.printResult(gasStation);
 			}else { // 돈은 있지만, 연료가 없는 경우
@@ -83,20 +75,8 @@ public class Customer {
 	 * @param stock (주유량)
 	 * @return 주유가 가능한 돈을 가지고 있다면 true, 아니면 false
 	 */
-	private boolean checkMoney(String type, int stock) {
-		
-		boolean result = false;
-		
-		if(type.equals("gasolin")) {
-			// type에 맞는 연료가격을 stock과 곱해서 money 보다 적은지 확인한다.
-			result = Street.GASOLIN_PRICE * stock <= money;
-		}else if(type.equals("diesel")) {
-			result = Street.DIESEL_PRICE * stock <= money;
-		}else if(type.equals("lpg")) {
-			result = Street.LPG_PRICE * stock <= money;
-		}
-		
-		return result;
+	private boolean checkMoney(FuelType type, int stock) {
+		return Street.PRICES.get(type) * stock <= money;
 	}
 	
 	private void printResult(GasStation gasStation) {

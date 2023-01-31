@@ -11,9 +11,9 @@ public class GasStation {
 	//생성자
 	public GasStation() {
 		fuelList = new ArrayList<>();
-		fuelList.add(new Fuel("gasolin", 5_000));
-		fuelList.add(new Fuel("diesel", 3_000));
-		fuelList.add(new Fuel("lpg", 1_000));
+		fuelList.add(new Fuel(FuelType.GASOLIN, 5_000));
+		fuelList.add(new Fuel(FuelType.DIESEL, 3_000));
+		fuelList.add(new Fuel(FuelType.LPG, 1_000));
 		setMoney(1_000_000);
 	}
 	
@@ -38,14 +38,14 @@ public class GasStation {
 	 * @param type 연료 종류 (gasolin, diesel, lpg)
 	 * @param stock 판매량
 	 */
-	public boolean sell(String type, int stock) {
+	public boolean sell(FuelType type, int stock) {
 		boolean result = checkStock(type, stock);
 		
 		// 1. type 연료가 stock만큼 존재하는지 확인한다.
 		if(result) {
 			// 1-1. 연료가 충분하다면 type 연료의 잔량을 stock 만큼 줄인다.
 			for(Fuel fuel: fuelList) {
-				if(fuel.getType().equals(type)) {
+				if(fuel.getType() == type) {
 					int fuelStock = fuel.getStock();
 					fuelStock -= stock;
 					fuel.setStock(fuelStock);
@@ -80,10 +80,10 @@ public class GasStation {
 	 * @param stock 주유량
 	 * @return 연료의 양이 stock 이상이면 true, 아니면 false
 	 */
-	private boolean checkStock(String type, int stock) {
+	private boolean checkStock(FuelType type, int stock) {
 		boolean result = false;
 		for(Fuel fuel: fuelList) {
-			if(fuel.getType().equals(type)) {
+			if(fuel.getType() == type) {
 				// result = fuel.getStock() >= stock;
 				// break;
 				return fuel.getStock() >= stock;
