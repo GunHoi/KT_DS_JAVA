@@ -3,6 +3,7 @@ package map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MapTest {
 	
@@ -12,6 +13,11 @@ public class MapTest {
 		map.put("Java", 100);
 		map.put("C", 80);
 		map.put("C#", 70);
+		
+		Set<String> keys = map.keySet();
+		for(String key:keys) {
+			System.out.println(key+" => "+map.get(key));
+		}
 		
 		System.out.println("Java: "+map.get("Java"));
 		System.out.println("C: "+map.get("C"));
