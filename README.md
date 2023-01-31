@@ -12,3 +12,5 @@ KT DS 웹 융합 어플리케이션 개발자 양성과정 JAVA 학습
  * Array 와 List의 차이 및 ArrayList 기능 사용 
 ### `23.01.30
  * For, for-each, forEach, while 등 반복문의 사용 및 생성자를 이용한 실습
+### `23.01.31
+ * Collection FrameWork(List,Map,Set) 학습 및 Static field, Enum, Package, Import 학습
