@@ -29,17 +29,5 @@ public class ListMemberDAOImpl implements MemberDAO {
 		MemberVO memberVo = dataSource.get(index);
 		return memberVo;
 	}
-
-	@Override
-	public MemberVO read(String Key) {
-		
-		for(MemberVO member : dataSource) {
-			if(member.getId().equals(Key)) {
-				return member;
-			}
-		}
-		return null;
-	}
-
 	
 }

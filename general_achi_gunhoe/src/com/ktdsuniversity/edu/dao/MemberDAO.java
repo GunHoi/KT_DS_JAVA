@@ -9,7 +9,11 @@ public interface MemberDAO {
 	
 	public List<MemberVO> readAll();
 	
-	public MemberVO read(int index);
+	public default MemberVO read(int index) {
+		return null;
+	}
 	
-	public MemberVO read(String Key);
+	public default MemberVO read(String key) {
+		return null;
+	}
 }

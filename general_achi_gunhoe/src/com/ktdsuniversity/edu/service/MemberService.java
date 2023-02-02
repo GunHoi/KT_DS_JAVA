@@ -12,5 +12,5 @@ public interface MemberService {
 	
 	public MemberVO read(int index);
 	
-	public MemberVO read(String Key);
+	public MemberVO read(String key);
 }

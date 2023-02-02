@@ -30,8 +30,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO read(String Key) {
-		return memberDAO.read(Key);
+	public MemberVO read(String key) {
+		return memberDAO.read(key);
 	}
 	
 }

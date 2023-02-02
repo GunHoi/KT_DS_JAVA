@@ -13,7 +13,6 @@ public class SecondMemberServiceImpl implements MemberService{
 	
 	public SecondMemberServiceImpl() {
 		memberDAO = new ListMemberDAOImpl();
-		//memberDAO = new MapMemberDAOImpl();
 	}
 	
 	@Override
@@ -34,8 +33,8 @@ public class SecondMemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO read(String Key) {
-		return memberDAO.read(Key);
+	public MemberVO read(String key) {
+		return memberDAO.read(key);
 	}
 
 }
