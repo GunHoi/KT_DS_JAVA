@@ -59,7 +59,7 @@ public class LastWordConnectGame {
 				continue;
 			}
 			
-			lastWord = inputWord.substring(inputWord.length()-1,inputWord.length());
+			lastWord = inputWord.substring(inputWord.length()-1);
 			wordList.add(inputWord);
 			
 		}
