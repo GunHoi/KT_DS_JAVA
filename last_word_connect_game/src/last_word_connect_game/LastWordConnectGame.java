@@ -18,6 +18,9 @@ public class LastWordConnectGame {
 			System.out.print("> ");
 			
 			startWord = scan.nextLine();
+			startWord = startWord.trim();
+			startWord = startWord.replace(" ", "");
+			
 			if(startWord.length()>=3) {
 				break;
 			}else {
@@ -32,6 +35,9 @@ public class LastWordConnectGame {
 			System.out.println('\"'+lastWord+"\"로 시작하는 단어를 입력하세요.");
 			System.out.print("> ");
 			String inputWord = scan.nextLine();
+			
+			inputWord = inputWord.trim();
+			inputWord = inputWord.replace(" ", "");
 			
 			if(inputWord.equals("포기")) {
 				System.out.println('\"'+inputWord+"\"를 입력했습니다.");
