@@ -58,12 +58,12 @@ public class BaseballStream1 {
 											  .filter( (vo) -> vo.getYear().equals("1933") )
 											  .collect(Collectors.toList());	//최종함수
 		
-		AllStarFullVO vo = list.stream()
-							   .filter( (vo1) -> vo1.getYear().equals("2933"))
-							   .findFirst()		//최종함수 (1건만 찾아오는 경우)
-//							   .get();		//Optional의 method -> No value present Error 발생
-							   .orElse(new AllStarFullVO());	//data가 없으면 new AllStarFullVO()를 리턴해라. (자주 쓰인다)
-		System.out.println(vo.getPlayerID());
+		AllStarFullVO first2933 = list.stream()
+									  .filter( (vo1) -> vo1.getYear().equals("2933"))
+									  .findFirst()		//최종함수 (1건만 찾아오는 경우)
+		//							  .get();		//Optional의 method -> No value present Error 발생
+									  .orElse(new AllStarFullVO());	//data가 없으면 new AllStarFullVO()를 리턴해라. (자주 쓰인다)
+		System.out.println(first2933.getPlayerID());
 		
 		System.out.println("================================================================");
 		//이름이 f로 시작하는 모든 PlayerId (대문자 F가 있다면 소문자 f로 변경하여 모두 뽑아내 바로 출력)
@@ -75,70 +75,70 @@ public class BaseballStream1 {
 		
 		System.out.println("================================================================");
 		list.stream()
-		.filter( (value) -> value.getPlayerID().toLowerCase().substring(0, 1).equals("f"))
-		.forEach( (name) -> {
-			System.out.println(name.getPlayerID());
-		});
+			.filter( (value) -> value.getPlayerID().toLowerCase().substring(0, 1).equals("f"))
+			.forEach( (name) -> {
+				System.out.println(name.getPlayerID());
+			});
 		
 		
 		//이름이 f로 시작하는 모든 PlayerId (소문자 f를 대문자F로 변경하여 f,F 모두 뽑아내 리스트에 저장함)
 		List <AllStarFullVO> startsWithF = list.stream()
-											  .filter( (allStarVO) -> allStarVO.getPlayerID().toUpperCase().startsWith("F"))
-											  .collect(Collectors.toList());
+										 	   .filter( (allStarVO) -> allStarVO.getPlayerID().toUpperCase().startsWith("F"))
+										 	   .collect(Collectors.toList());
 		
 		System.out.println("================================================================");
 		// 2중 filter
 		list.stream()
-		.filter( (allStarVO) -> allStarVO.getYear().equals("2004"))	//filter를 걸때는 수가 가장 적어지는 방향으로 한다.
-		.filter( (allStarVO) -> allStarVO.getTeamID().equals("TEX"))
-		.forEach( (allStarVO) -> {
-			System.out.println(allStarVO.getPlayerID());
-			System.out.println(allStarVO.getYear());
-			System.out.println(allStarVO.getTeamID());
-		});
+			.filter( (allStarVO) -> allStarVO.getYear().equals("2004"))	//filter를 걸때는 수가 가장 적어지는 방향으로 한다.
+			.filter( (allStarVO) -> allStarVO.getTeamID().equals("TEX"))
+			.forEach( (allStarVO) -> {
+				System.out.println(allStarVO.getPlayerID());
+				System.out.println(allStarVO.getYear());
+				System.out.println(allStarVO.getTeamID());
+			});
 		
 		System.out.println("================================================================");
 		// && 연산자를 이용한 2중 filter
 		list.stream()
-		.filter( (allStarVO) -> allStarVO.getYear().equals("2004") && allStarVO.getTeamID().equals("TEX"))
-		.forEach( (allStarVO) -> {
-			System.out.println(allStarVO.getPlayerID());
-			System.out.println(allStarVO.getYear());
-			System.out.println(allStarVO.getTeamID());
-		});
+			.filter( (allStarVO) -> allStarVO.getYear().equals("2004") && allStarVO.getTeamID().equals("TEX"))
+			.forEach( (allStarVO) -> {
+				System.out.println(allStarVO.getPlayerID());
+				System.out.println(allStarVO.getYear());
+				System.out.println(allStarVO.getTeamID());
+			});
 		
 		System.out.println("================================================================");
 		list.stream()
-		.filter( (allStarVO) -> allStarVO.getStartingPos() == 0)
-		.forEach( (allStarVO) -> {
-			System.out.print(allStarVO.getStartingPos()+" ");
-			System.out.print(allStarVO.getPlayerID()+" ");
-			System.out.print(allStarVO.getYear()+" ");
-			System.out.println(allStarVO.getTeamID());
-		});
+			.filter( (allStarVO) -> allStarVO.getStartingPos() == 0)
+			.forEach( (allStarVO) -> {
+				System.out.print(allStarVO.getStartingPos()+" ");
+				System.out.print(allStarVO.getPlayerID()+" ");
+				System.out.print(allStarVO.getYear()+" ");
+				System.out.println(allStarVO.getTeamID());
+			});
 		
 		System.out.println("================================================================");
 		//gp가 0, teamID NYA, PlayerID에 fo가 포함되어있으면
 		list.stream()
-		.filter( (allStarVO) -> allStarVO.getGp() == 0)
-		.filter( (allStarVO -> allStarVO.getTeamID().toUpperCase().equals("NYA")))
-		.filter( (allStarVO) -> allStarVO.getPlayerID().toLowerCase().contains("fo"))
-		.forEach( (allStarVO) ->{
-			System.out.print(allStarVO.getPlayerID()+" ");
-			System.out.print(allStarVO.getYear()+" ");
-			System.out.println(allStarVO.getTeamID());
-		});
+			.filter( (allStarVO) -> allStarVO.getGp() == 0)
+			.filter( (allStarVO -> allStarVO.getTeamID().toUpperCase().equals("NYA")))
+			.filter( (allStarVO) -> allStarVO.getPlayerID().toLowerCase().contains("fo"))
+			.forEach( (allStarVO) ->{
+				System.out.print(allStarVO.getPlayerID()+" ");
+				System.out.print(allStarVO.getYear()+" ");
+				System.out.println(allStarVO.getTeamID());
+			});
 		
 		System.out.println("================================================================");
 		list.parallelStream()	//병렬처리시 출력하는 과정에서 서로 개입하기 때문에 순서가 뒤죽박죽으로 나오게 된다.
-		.filter( (allStarVO) -> allStarVO.getGp() == 0)
-		.filter( (allStarVO -> allStarVO.getTeamID().toUpperCase().equals("NYA")))
-		.filter( (allStarVO) -> allStarVO.getPlayerID().toLowerCase().contains("fo"))
-		.forEach( (allStarVO) ->{
-			System.out.print(allStarVO.getPlayerID()+" ");
-			System.out.print(allStarVO.getYear()+" ");
-			System.out.println(allStarVO.getTeamID());
-		});
+			.filter( (allStarVO) -> allStarVO.getGp() == 0)
+			.filter( (allStarVO -> allStarVO.getTeamID().toUpperCase().equals("NYA")))
+			.filter( (allStarVO) -> allStarVO.getPlayerID().toLowerCase().contains("fo"))
+			.forEach( (allStarVO) ->{
+				System.out.print(allStarVO.getPlayerID()+" ");
+				System.out.print(allStarVO.getYear()+" ");
+				System.out.println(allStarVO.getTeamID());
+			});
 		
 		System.out.println("================================================================");
 		//distinct : 중복제거 , 처음 5517 -> 중복제거 후 1930
