@@ -1,4 +1,4 @@
-package com.ktdsuniversity.edu.stream;
+package com.ktdsuniversity.edu.stream.baseball;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -195,31 +195,100 @@ public class BaseballStream1 {
 								 
 		System.out.println(name1937DET.getPlayerID());
 		
+		System.out.println("================================================================");
+		//6. GP 1, startingPos가 3인 선수의 이름을 출력하세요.
+		list.stream()
+			.filter(vo -> vo.getGp() == 1)
+			.filter(vo -> vo.getStartingPos() == 3)
+			.map(vo -> vo.getPlayerID())
+			.forEach(vo -> System.out.println(vo));
 		
+		System.out.println("================================================================");
+		//7. BOS 팀에 있는 선수는 총 몇 명인가?
+		long bosTeamCount = list.stream()
+			.filter(vo -> vo.getTeamID().equals("BOS"))
+			.count();
+		System.out.println(bosTeamCount);
 		
+		System.out.println("================================================================");
+		//8. 이름이 foxx로 시작하는 선수의 플레이 연도를 중복 제거한 후 출력하세요.
+		list.stream()
+			.filter(vo->vo.getPlayerID().startsWith("foxx"))
+			.map(vo-> vo.getYear())
+			.distinct()
+			.forEach(vo-> System.out.println(vo));
 		
+		System.out.println("================================================================");
+		//9. lombaer01 선수는 몇 년도에 어느 팀에서 플레이 했나요?
+		list.stream()
+			.filter(vo->vo.getPlayerID().equals("lombaer01"))
+			.forEach(vo->{
+				System.out.print(vo.getYear()+"년도에 ");
+				System.out.println(vo.getTeamID()+"팀");
+			});
 		
+		list.stream()
+			.filter(vo->vo.getPlayerID().equals("lombaer01"))
+			.map( vo -> vo.getYear() + " > " + vo.getTeamID())
+			.forEach(System.out::println);
 		
+		System.out.println("================================================================");
+		//10. muncyma01 선수의 year, startingPos와 teamID를 출력하세요.
+		list.stream()
+			.filter(vo -> vo.getPlayerID().equals("muncyma01"))
+			.map(vo->vo.getYear()+" > "+vo.getStartingPos()+" > "+vo.getTeamID() )
+			.forEach(System.out::println);
 		
+		System.out.println("================================================================");
+		//11. 2015년에 hernafe02 선수는 몇 번 출전했나요?
+		long countHerbafe02 = list.stream()
+			.filter(vo -> vo.getPlayerID().equals("hernafe02"))
+			.filter(vo -> vo.getYear().equals("2015"))
+			.count();
+		System.out.println(countHerbafe02);
 		
+		System.out.println("================================================================");
+		//12. ATL 팀이 몇 년도에 경기에 출전했나요?
+		list.stream()
+			.filter(vo->vo.getTeamID().equals("ATL"))
+			.map(vo->vo.getYear())
+			.distinct()
+			.forEach(System.out::println);
 		
+		System.out.println("13================================================================");
+		//13. W로 시작하는 팀은 몇 년도에 경기에 출전했나요?
+		list.stream()
+			.filter(vo -> vo.getTeamID().startsWith("W"))
+			.map(vo -> vo.getYear())
+			.distinct()
+			.forEach(System.out::println);
 		
+		System.out.println("14================================================================");
+		//14. GP와 startingPos가 모두 0인 선수 중 PHA 팀에 소속했던 선수는 누구인가요?
+		list.stream()
+			.filter(vo->vo.getGp()==0)
+			.filter(vo->vo.getStartingPos()==0)
+			.filter(vo->vo.getTeamID().equals("PHA"))
+			.map(vo->vo.getPlayerID())
+			.forEach(System.out::println);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		System.out.println("15================================================================");
+		//15. playerID의 자리수가 8자리인 선수의 활동연도를 중복 제거하여 출력하세요
+		list.stream()
+			.filter(vo->vo.getPlayerID().length()==8)
+			.map(vo->vo.getYear())
+			.distinct()
+			.forEach(System.out::println);
+		// 17. lgID의 값이 AL 
+		String name = list.stream()
+						  .filter(vo->vo.getLgID().equals("AL"))
+						  .filter(vo->vo.getGameID().endsWith("60"))
+						  .filter(vo->vo.getTeamID().equals("DET"))
+						  .filter(vo->vo.getPlayerID().startsWith("f"))
+						  .map(vo->vo.getPlayerID())
+						  .findFirst()
+						  .orElse("없음");
+		System.out.println(name);
 		// 16번문제 7번 이건회
 		
 	}

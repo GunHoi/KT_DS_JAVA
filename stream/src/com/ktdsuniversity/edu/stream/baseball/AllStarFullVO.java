@@ -1,4 +1,4 @@
-package com.ktdsuniversity.edu.stream;
+package com.ktdsuniversity.edu.stream.baseball;
 
 public class AllStarFullVO {
 
