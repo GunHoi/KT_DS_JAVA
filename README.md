@@ -24,3 +24,5 @@ KT DS 웹 융합 어플리케이션 개발자 양성과정 JAVA 학습
  * Lambda Expression, Method Reference, Stream 학습 및 실습을  통한 사용법 학습
 ### `23.02.07
  * Stream – mapping, flatmap, optional, groupingBy, findAny, findFirst 등 실습
+### `23.02.08
+ * 배웠던 내용들 복습을 통한 개념 재확립 및 실습을 통한 사용법 학습
