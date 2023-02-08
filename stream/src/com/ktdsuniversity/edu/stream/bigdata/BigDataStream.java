@@ -23,7 +23,7 @@ public class BigDataStream {
 							TextVO vo = new TextVO();
 							vo.setKey(strArr[0].trim());
 							if(strArr.length>1) {
-								vo.setValue(strArr[1]);
+								vo.setValue(strArr[1].trim());
 							}
 							return vo;
 						})
@@ -66,7 +66,7 @@ public class BigDataStream {
 		System.out.println("9. "+countLetter7670637.orElse(0));
 		//10. (병렬)10K.ID.CONTENTS 파일에서 내용이 없는 "번호"는 몇개인지 출력
 		List<String> countLetterEmpty = list.parallelStream()
-												 .filter(vo->vo.getValue()==null)
+												 .filter(vo->vo.getValue()==null ||vo.getValue().trim().length() == 0)
 												 .map(vo->vo.getKey())
 												 .collect(Collectors.toList());
 		System.out.println("10. "+countLetterEmpty.size());
@@ -91,9 +91,34 @@ public class BigDataStream {
 									  .collect(Collectors.toList());
 		System.out.println("13. "+keyLength6.size());
 		//14. (병렬)10K.ID.CONTENTS 파일에서 글 번호가 7자리 인 것은 몇 개인지
-		
+		long keyLength7 = list.parallelStream()
+							   .filter(vo->vo.getKey().length()==7)
+							   .map(vo->vo.getKey())
+							   .count();
+		System.out.println("14. "+keyLength7);
 		//15. (병렬)10K.ID.CONTENTS 파일에서 글 번호가 9로 시작하는 모든 글들의 첫 번째 단어만 출력
-		
+		System.out.print("15. ");
+		list.parallelStream()
+			.filter(vo->vo.getKey().startsWith("9"))
+			.map(vo->vo.getValue() == null ? "" : vo.getValue().trim())
+			.forEach(word->{
+				if(word.trim().length() == 0) {
+					System.out.println("");
+				}else {
+					String[] firstWord = word.split(" ");
+					System.out.println(firstWord[0]+" ");
+				}
+			});
+		//System.out.println("15. "+start91stWord);
 		//16. (병렬)10K.ID.CONTENTS 파일에서 내용이 있으며, 글 번호가 7로 시작하는 모든 글들의 첫번째 단어만 출력
+		System.out.print("\n16. ");
+		list.parallelStream()
+			.filter(vo->vo.getKey().startsWith("7"))
+			.filter(vo->vo.getValue()!=null)
+			.filter(vo->vo.getValue().length() != 0)
+			.forEach(vo->{
+				String[] firstWord = vo.getValue().split(" ");
+				System.out.print(firstWord[0]+" ");
+			});
 	}
 }
