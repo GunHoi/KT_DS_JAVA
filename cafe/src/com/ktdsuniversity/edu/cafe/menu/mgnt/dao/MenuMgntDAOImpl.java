@@ -14,7 +14,6 @@ public class MenuMgntDAOImpl implements MenuMgntDAO {
 	 * 각 종류 별 리스트
 	 * ex) 카페 - 아메리카노, 카페라떼, 에스프레소, ... etc
 	 */	
-	// 음료 종류별로 리스트를 만들어야하나?? 다른 방법은 없을까?
 	
 	/**
 	 * 각 종류가 들어갈 맵
@@ -34,7 +33,6 @@ public class MenuMgntDAOImpl implements MenuMgntDAO {
 	public int create(String itemType, MenuMgntVO menuMgntVO) {
 		List <MenuMgntVO> itemList = dataSource.get(itemType);
 		itemList.add(menuMgntVO);
-//		dataSource.put(itemType, itemList); 써도 되고 안써도되는 코드(불필요한 코드라는 의미)
 		return 1;
 	}
 
