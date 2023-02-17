@@ -9,6 +9,18 @@ import com.ktdsuniversity.edu.cafe.menu.mgnt.vo.MenuMgntVO;
 
 public class MenuMgntServiceImpl implements MenuMgntService{
 
+	/*	SingleTon Pattern
+	 * 
+	 *	private MenuMgntDAO menuMgntDAO;
+	 *	private static MenuMgntService service;
+	 *	public static MenuMgntService get() {
+	 *		if(service == null) service = new MenuMgntServiceImpl();
+	 *		return service;
+	 *	}
+	 *	private MenuMgntServiceImpl() {
+	 *		menuMgntDAO = new MenuMgntDAOImpl();
+	 *	}
+	 */
 	private MenuMgntDAO menuMgntDAO;
 	
 	public MenuMgntServiceImpl() {

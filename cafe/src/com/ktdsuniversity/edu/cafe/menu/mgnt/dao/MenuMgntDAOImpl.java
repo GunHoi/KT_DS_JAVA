@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import com.ktdsuniversity.edu.cafe.menu.mgnt.vo.MenuMgntVO;
 
@@ -41,6 +40,9 @@ public class MenuMgntDAOImpl implements MenuMgntDAO {
 		List<MenuMgntVO> itemList = dataSource.get(itemType);
 		MenuMgntVO item = itemList.get(itemIdx);
 		item.setItemName(menuMgntVO.getItemName());
+		item.setPrice(menuMgntVO.getPrice());
+		item.setQuantity(menuMgntVO.getQuantity());
+		item.setSoldOut(menuMgntVO.isSoldOut());
 		return 1;
 	}
 	
