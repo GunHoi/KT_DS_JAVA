@@ -112,9 +112,8 @@ public class ValidationHandler {
 	 * @return 정수 범위 내의 숫자이면 true, 아니면 false
 	 */
 	private boolean isInteger(String value) {
-		int intValue;
 		try {
-			intValue = Integer.parseInt(value);
+			Integer.parseInt(value);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
